@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduSpace - Virtual Classroom Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="nav-header" id="navHeader" style="display: none;">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h2>🎓 EduSpace</h2>
+            </div>
+            <div class="nav-user">
+                <div class="user-info" id="userInfo">
+                    <span class="user-avatar" id="userAvatar">👤</span>
+                    <span class="user-name" id="userName">User</span>
+                </div>
+                <button class="btn btn--outline btn--sm" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Landing Page -->
+    <section class="landing-page" id="landingPage">
+        <div class="landing-container">
+            <div class="landing-content">
+                <div class="landing-hero">
+                    <h1 class="hero-title">Welcome to EduSpace</h1>
+                    <p class="hero-subtitle">The ultimate virtual classroom experience with live video, interactive quizzes, and real-time collaboration</p>
+                    <div class="hero-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">📹</span>
+                            <span>HD Video Calls</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">💬</span>
+                            <span>Real-time Chat</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">📝</span>
+                            <span>Interactive Quizzes</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">👥</span>
+                            <span>Participant Management</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="auth-container">
+                    <!-- Login Form -->
+                    <div class="auth-form" id="loginForm">
+                        <h3>Login to Your Account</h3>
+                        <form id="loginFormElement">
+                            <div class="form-group">
+                                <label class="form-label" for="loginEmail">Email Address</label>
+                                <input type="email" class="form-control" id="loginEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="loginPassword">Password</label>
+                                <input type="password" class="form-control" id="loginPassword" required>
+                            </div>
+                            <button type="submit" class="btn btn--primary btn--full-width">Login</button>
+                        </form>
+                        <p class="auth-switch">Don't have an account? <a href="#" id="showSignup">Sign up here</a></p>
+                    </div>
+
+                    <!-- Signup Form -->
+                    <div class="auth-form" id="signupForm" style="display: none;">
+                        <h3>Create Your Account</h3>
+                        <form id="signupFormElement">
+                            <div class="form-group">
+                                <label class="form-label" for="signupName">Full Name</label>
+                                <input type="text" class="form-control" id="signupName" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="signupEmail">Email Address</label>
+                                <input type="email" class="form-control" id="signupEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="signupPassword">Password</label>
+                                <input type="password" class="form-control" id="signupPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="signupRole">Role</label>
+                                <select class="form-control" id="signupRole" required>
+                                    <option value="">Select your role</option>
+                                    <option value="student">Student</option>
+                                    <option value="instructor">Instructor</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn--primary btn--full-width">Sign Up</button>
+                        </form>
+                        <p class="auth-switch">Already have an account? <a href="#" id="showLogin">Login here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard -->
+    <section class="dashboard" id="dashboard" style="display: none;">
+        <div class="container">
+            <div class="dashboard-header">
+                <h2>My Dashboard</h2>
+                <div class="dashboard-actions">
+                    <button class="btn btn--primary" id="createClassroomBtn" style="display: none;">Create Classroom</button>
+                    <button class="btn btn--outline" id="refreshClassrooms">Refresh</button>
+                </div>
+            </div>
+            
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalClassrooms">0</div>
+                    <div class="stat-label">Available Classrooms</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="totalParticipants">0</div>
+                    <div class="stat-label">Total Participants</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="activeClassrooms">0</div>
+                    <div class="stat-label">Active Sessions</div>
+                </div>
+            </div>
+
+            <div class="classrooms-grid" id="classroomsGrid">
+                <!-- Classroom cards will be populated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Create Classroom Modal -->
+    <div class="modal" id="createClassroomModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Classroom</h3>
+                <button class="modal-close" id="closeCreateModal">&times;</button>
+            </div>
+            <form id="createClassroomForm">
+                <div class="form-group">
+                    <label class="form-label" for="classroomTitle">Classroom Title</label>
+                    <input type="text" class="form-control" id="classroomTitle" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="classroomDescription">Description</label>
+                    <textarea class="form-control" id="classroomDescription" rows="3" required></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn--outline" id="cancelCreate">Cancel</button>
+                    <button type="submit" class="btn btn--primary">Create Classroom</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Classroom View -->
+    <section class="classroom-view" id="classroomView" style="display: none;">
+        <div class="classroom-header">
+            <div class="classroom-info">
+                <h2 id="classroomTitle">Classroom Name</h2>
+                <span class="participant-count" id="participantCount">0 participants</span>
+            </div>
+            <div class="classroom-controls">
+                <button class="btn btn--outline btn--sm" id="leaveClassroomBtn">Leave Classroom</button>
+            </div>
+        </div>
+
+        <div class="classroom-main">
+            <!-- Video Conference Area -->
+            <div class="video-section">
+                <div class="video-grid" id="videoGrid">
+                    <!-- Video streams will be populated here -->
+                </div>
+                
+                <div class="video-controls">
+                    <button class="control-btn" id="toggleCamera">
+                        <span class="control-icon">📹</span>
+                        <span class="control-label">Camera</span>
+                    </button>
+                    <button class="control-btn" id="toggleMic">
+                        <span class="control-icon">🎤</span>
+                        <span class="control-label">Microphone</span>
+                    </button>
+                    <button class="control-btn" id="shareScreen">
+                        <span class="control-icon">🖥️</span>
+                        <span class="control-label">Screen Share</span>
+                    </button>
+                    <button class="control-btn" id="raiseHand">
+                        <span class="control-icon">✋</span>
+                        <span class="control-label">Raise Hand</span>
+                    </button>
+                    <button class="control-btn" id="toggleView">
+                        <span class="control-icon">⊞</span>
+                        <span class="control-label">Grid View</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="classroom-sidebar">
+                <div class="sidebar-tabs">
+                    <button class="tab-btn active" data-tab="chat">💬 Chat</button>
+                    <button class="tab-btn" data-tab="participants">👥 Participants</button>
+                    <button class="tab-btn" data-tab="quiz" id="quizTab">📝 Quiz</button>
+                </div>
+
+                <!-- Chat Tab -->
+                <div class="tab-content active" id="chatTab">
+                    <div class="chat-messages" id="chatMessages">
+                        <!-- Chat messages will be populated here -->
+                    </div>
+                    <div class="chat-input-container">
+                        <input type="text" class="chat-input" id="chatInput" placeholder="Type a message...">
+                        <button class="chat-send-btn" id="sendMessageBtn">Send</button>
+                    </div>
+                </div>
+
+                <!-- Participants Tab -->
+                <div class="tab-content" id="participantsTab">
+                    <div class="participants-list" id="participantsList">
+                        <!-- Participants will be populated here -->
+                    </div>
+                </div>
+
+                <!-- Quiz Tab -->
+                <div class="tab-content" id="quizTabContent">
+                    <div class="quiz-controls" id="quizControls" style="display: none;">
+                        <button class="btn btn--primary btn--sm" id="startQuizBtn">Start Quiz</button>
+                        <button class="btn btn--outline btn--sm" id="createQuizBtn">Create Quiz</button>
+                    </div>
+                    <div class="quiz-container" id="quizContainer">
+                        <!-- Quiz content will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Creation Modal -->
+    <div class="modal large-modal" id="createQuizModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create Interactive Quiz</h3>
+                <button class="modal-close" id="closeQuizModal">&times;</button>
+            </div>
+            <form id="createQuizForm">
+                <div class="form-group">
+                    <label class="form-label" for="quizTitle">Quiz Title</label>
+                    <input type="text" class="form-control" id="quizTitle" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="quizTimeLimit">Time Limit (minutes)</label>
+                    <input type="number" class="form-control" id="quizTimeLimit" min="1" value="10">
+                </div>
+                
+                <div class="quiz-questions" id="quizQuestions">
+                    <h4>Questions</h4>
+                    <div class="question-item">
+                        <div class="form-group">
+                            <label class="form-label">Question 1</label>
+                            <input type="text" class="form-control question-input" placeholder="Enter your question" required>
+                        </div>
+                        <div class="options-container">
+                            <div class="form-group">
+                                <label class="form-label">Options</label>
+                                <div class="option-inputs">
+                                    <div class="option-row">
+                                        <input type="radio" name="correct-0" value="0">
+                                        <input type="text" class="form-control option-input" placeholder="Option A" required>
+                                    </div>
+                                    <div class="option-row">
+                                        <input type="radio" name="correct-0" value="1">
+                                        <input type="text" class="form-control option-input" placeholder="Option B" required>
+                                    </div>
+                                    <div class="option-row">
+                                        <input type="radio" name="correct-0" value="2">
+                                        <input type="text" class="form-control option-input" placeholder="Option C" required>
+                                    </div>
+                                    <div class="option-row">
+                                        <input type="radio" name="correct-0" value="3">
+                                        <input type="text" class="form-control option-input" placeholder="Option D" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quiz-actions">
+                    <button type="button" class="btn btn--outline" id="addQuestionBtn">Add Question</button>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn btn--outline" id="cancelQuizCreate">Cancel</button>
+                    <button type="submit" class="btn btn--primary">Create Quiz</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Quiz Taking Interface -->
+    <div class="modal large-modal" id="takeQuizModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="activeQuizTitle">Quiz Title</h3>
+                <div class="quiz-timer" id="quizTimer">10:00</div>
+            </div>
+            <div class="quiz-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="quizProgress"></div>
+                </div>
+                <span class="progress-text" id="progressText">Question 1 of 3</span>
+            </div>
+            <div class="quiz-question-container" id="quizQuestionContainer">
+                <!-- Current question will be displayed here -->
+            </div>
+            <div class="quiz-navigation">
+                <button class="btn btn--outline" id="prevQuestionBtn" style="display: none;">Previous</button>
+                <button class="btn btn--primary" id="nextQuestionBtn">Next</button>
+                <button class="btn btn--primary" id="submitQuizBtn" style="display: none;">Submit Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Results Modal -->
+    <div class="modal" id="quizResultsModal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Quiz Results</h3>
+                <button class="modal-close" id="closeResultsModal">&times;</button>
+            </div>
+            <div class="quiz-results" id="quizResults">
+                <!-- Results will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-message" id="toastMessage"></span>
+        <button class="toast-close" id="toastClose">&times;</button>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
