@@ -3,8 +3,8 @@ const express = require('express');
 const http = require('http');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-const connectDB = require('D:\Subjects\FSWD\virtual-classroom\backend\config\db.js');
-const socketHandler = require('D:\Subjects\FSWD\virtual-classroom\backend\socket');
+const connectDB = require('./config/db.js');
+const socketHandler = require('./socket');
 const path = require('path');
 
 const app = express();
@@ -28,14 +28,14 @@ app.use(cors({
 }));
 
 // routes
-app.use('/api/auth', require('D:\Subjects\FSWD\virtual-classroom\backend\routes\auth.js')); // backend\routes\auth.js
-app.use('/api/users', require('D:/Subjects/FSWD/virtual-classroom/backend/routes/users.js'));
-app.use('/api/classrooms', require('D:\Subjects\FSWD\virtual-classroom\backend\routes\classrooms.js'));
-app.use('/api/messages', require('D:\Subjects\FSWD\virtual-classroom\backend\routes\messages.js'));
-app.use('/api/quizzes', require('D:\Subjects\FSWD\virtual-classroom\backend\routes\quizzes.js'));
-app.use('/api/analytics', require('D:\Subjects\FSWD\virtual-classroom\backend\routes\analytics.js'));
-app.use('/api/notifications', require('D:\Subjects\FSWD\virtual-classroom\backend\routes\notifications.js'));
-app.use('/api/admin', require('D:\Subjects\FSWD\virtual-classroom\backend\routes\admin.js'));
+app.use('/api/auth', require('./routes/auth.js'));
+app.use('/api/users', require('./routes/users.js'));
+app.use('/api/classrooms', require('./routes/classrooms.js'));
+app.use('/api/messages', require('./routes/messages.js'));
+app.use('/api/quizzes', require('./routes/quizzes.js'));
+app.use('/api/analytics', require('./routes/analytics.js'));
+app.use('/api/notifications', require('./routes/notifications.js'));
+app.use('/api/admin', require('./routes/admin.js'));
 
 // basic health
 app.get('/api/health', (req, res) => res.json({ ok: true }));

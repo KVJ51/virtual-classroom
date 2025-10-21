@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { protect } = require('D:\Subjects\FSWD\virtual-classroom\backend\middleware\auth.js');
-const { authorizeRoles } = require('D:\Subjects\FSWD\virtual-classroom\backend\middleware\role.js');
-const classroomController = require('D:\Subjects\FSWD\virtual-classroom\backend\controllers\classroomController.js');
+const { protect } = require('../middleware/auth.js');
+const { authorizeRoles } = require('../middleware/role.js');
+const classroomController = require('../controllers/classroomController.js');
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 

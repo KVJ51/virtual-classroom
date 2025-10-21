@@ -1,5 +1,5 @@
-const Quiz = require('D:\Subjects\FSWD\virtual-classroom\backend\models\quiz.js');
-const QuizResult = require('D:\Subjects\FSWD\virtual-classroom\backend\models\quizresult.js');
+const Quiz = require('../models/quiz.js');
+const QuizResult = require('../models/quizresult.js');
 
 exports.createQuiz = async (req, res, next) => {
   try {

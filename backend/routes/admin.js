@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { protect } = require('D:\Subjects\FSWD\virtual-classroom\backend\middleware\auth.js');
-const { authorizeRoles } = require('D:\Subjects\FSWD\virtual-classroom\backend\middleware\role.js');
-const adminController = require('D:\Subjects\FSWD\virtual-classroom\backend\controllers\adminController.js');
+const { protect } = require('../middleware/auth.js');
+const { authorizeRoles } = require('../middleware/role.js');
+const adminController = require('../controllers/adminController.js');
 
 router.use(protect, authorizeRoles('admin'));
 

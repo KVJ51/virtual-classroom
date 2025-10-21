@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('D:/Subjects/FSWD/virtual-classroom/backend/models/user.js');
+const User = require('../models/user.js');
 
 const createToken = (user) => {
   return jwt.sign({ id: user._id }, process.env.JWT_SECRET, {

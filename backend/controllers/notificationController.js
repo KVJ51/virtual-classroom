@@ -1,4 +1,4 @@
-const Notification = require('D:\Subjects\FSWD\virtual-classroom\backend\models\notification.js');
+const Notification = require('../models/notification.js');
 
 exports.sendNotification = async (req, res, next) => {
   try {

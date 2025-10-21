@@ -1,4 +1,4 @@
-const User = require('D:/Subjects/FSWD/virtual-classroom/backend/models/user.js');
+const User = require('../models/user.js');
 const bcrypt = require('bcryptjs');
 
 exports.getMe = async (req, res, next) => {

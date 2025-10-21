@@ -1,4 +1,4 @@
-const Classroom = require('D:/Subjects/FSWD/virtual-classroom/backend/models/classroom.js');
+const Classroom = require('../models/classroom.js');   
 const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');

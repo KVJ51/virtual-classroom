@@ -1,6 +1,6 @@
-const QuizResult = require('D:\Subjects\FSWD\virtual-classroom\backend\models\quizresult.js');
-const Quiz = require('D:\Subjects\FSWD\virtual-classroom\backend\models\quiz.js');
-const Classroom = require('D:\Subjects\FSWD\virtual-classroom\backend\models\classroom.js');
+const QuizResult = require('../models/quizresult.js'); // backend\models\quizresult.js
+const Quiz = require('../models/quiz.js');
+const Classroom = require('../models/classroom.js');
 
 exports.studentAnalytics = async (req, res, next) => {
   try {

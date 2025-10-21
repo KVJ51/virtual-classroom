@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { protect } = require('D:\Subjects\FSWD\virtual-classroom\backend\middleware\auth.js');
-const { authorizeRoles } = require('D:\Subjects\FSWD\virtual-classroom\backend\middleware\role.js');
-const quizController = require('D:\Subjects\FSWD\virtual-classroom\backend\controllers\quizController.js');
+const { protect } = require('../middleware/auth.js');
+const { authorizeRoles } = require('../middleware/role.js');
+const quizController = require('../controllers/quizController.js');
 
 router.post('/create', protect, authorizeRoles('teacher'), quizController.createQuiz);
 router.get('/:classroomId', protect, quizController.getByClassroom);

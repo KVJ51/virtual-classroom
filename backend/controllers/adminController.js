@@ -1,7 +1,7 @@
-const User = require('D:/Subjects/FSWD/virtual-classroom/backend/models/user.js');
-const Classroom = require('D:\Subjects\FSWD\virtual-classroom\backend\models\classroom.js');
-const Message = require('D:\Subjects\FSWD\virtual-classroom\backend\models\message.js');
-const Quiz = require('D:\Subjects\FSWD\virtual-classroom\backend\models\quiz.js');
+const User = require('../models/user.js');
+const Classroom = require('../models/classroom.js');
+const Message = require('../models/message.js');
+const Quiz = require('../models/quiz.js');
 
 exports.listUsers = async (req, res, next) => {
   try {

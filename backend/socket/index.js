@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
-const Message = require('D:\Subjects\FSWD\virtual-classroom\backend\models\message.js');
-const User = require('D:/Subjects/FSWD/virtual-classroom/backend/routes/users.js');
+const Message = require('../models/message.js');
+const User = require('../models/user.js');
 
+// ... rest of the file stays same
 /**
  * Socket handler:
  * - expects cookie 'token' to be present (httpOnly).
